@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spizzigo | Ristorante Italiano & Pizzeria</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Lato', sans-serif; color: #1a1a1a; background: #fff; overflow-x: hidden; }
+
+    :root {
+      --red: #C41E3A;
+      --red-dark: #9B1530;
+      --cream: #FDF8F0;
+      --gold: #C9A84C;
+      --dark: #1a1a1a;
+      --gray: #6b6b6b;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      padding: 22px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(20,20,20,0.97);
+      padding: 14px 64px;
+      box-shadow: 0 2px 40px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px; font-weight: 700;
+      color: #fff; letter-spacing: 3px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      transition: color 0.3s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--gold); transition: width 0.3s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      background: var(--red); color: #fff;
+      padding: 12px 28px; border-radius: 3px;
+      text-decoration: none; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(196,30,58,0.4); }
+
+    /* HERO */
+    .hero {
+      height: 100vh; min-height: 700px;
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden; background: #111;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=1920&q=80');
+      background-size: cover; background-position: center;
+      opacity: 0.5;
+      animation: heroPan 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroPan {
+      0% { transform: scale(1.06) translateX(0); }
+      100% { transform: scale(1.06) translateX(-30px); }
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 100%);
+    }
+    .hero-content {
+      position: relative; text-align: center; color: #fff;
+      max-width: 820px; padding: 0 24px;
+      animation: fadeUp 1.1s ease both;
+    }
+    .hero-eyebrow {
+      display: block; font-size: 11px; letter-spacing: 5px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(54px, 8vw, 96px);
+      font-weight: 700; line-height: 1.05; margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero p {
+      font-size: 18px; font-weight: 300; line-height: 1.8;
+      margin-bottom: 48px; color: rgba(255,255,255,0.82);
+      max-width: 540px; margin-left: auto; margin-right: auto;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      padding: 18px 44px; border-radius: 3px;
+      text-decoration: none; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+      transition: all 0.3s; border: 2px solid var(--red); display: inline-block;
+    }
+    .btn-primary:hover {
+      background: var(--red-dark); border-color: var(--red-dark);
+      transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,30,58,0.45);
+    }
+    .btn-outline {
+      background: transparent; color: #fff;
+      padding: 18px 44px; border-radius: 3px;
+      text-decoration: none; font-size: 12px;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+      transition: all 0.3s; border: 2px solid rgba(255,255,255,0.55); display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.45); font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+    /* PROMO BAR */
+    .promo-bar {
+      background: var(--red); color: #fff;
+      text-align: center; padding: 14px 24px;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+    }
+    .promo-bar span { color: #FFE08A; }
+
+    /* SHARED */
+    .section-label {
+      display: block; font-size: 11px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 14px; font-weight: 700;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 58px);
+      font-weight: 700; line-height: 1.1; color: var(--dark); margin-bottom: 20px;
+    }
+    .section-title em { font-style: italic; color: var(--red); }
+    .section-sub { font-size: 17px; color: var(--gray); line-height: 1.8; max-width: 560px; }
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.15s; }
+    .d2 { transition-delay: 0.3s; }
+    .d3 { transition-delay: 0.45s; }
+    .d4 { transition-delay: 0.6s; }
+
+    /* ABOUT */
+    .about {
+      background: var(--cream);
+      padding: 110px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 90px; align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img { width: 100%; height: 580px; object-fit: cover; border-radius: 4px; display: block; }
+    .about-badge {
+      position: absolute; bottom: -28px; right: -28px;
+      background: var(--red); color: #fff;
+      width: 128px; height: 128px; border-radius: 50%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; text-align: center;
+      box-shadow: 0 12px 40px rgba(196,30,58,0.45);
+    }
+    .about-badge .yr { font-size: 30px; font-weight: 700; line-height: 1; }
+    .about-badge .lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.88; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 48px;
+    }
+    .stat { border-left: 3px solid var(--gold); padding-left: 18px; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; color: var(--red); line-height: 1; }
+    .stat-lbl { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* FEATURES */
+    .features { background: var(--dark); color: #fff; padding: 100px 80px; text-align: center; }
+    .features .section-label { color: var(--gold); }
+    .features .section-title { color: #fff; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 32px; margin-top: 60px; max-width: 1060px; margin-left: auto; margin-right: auto;
+    }
+    .feat-card {
+      padding: 44px 32px; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px; transition: all 0.4s;
+    }
+    .feat-card:hover { border-color: var(--gold); transform: translateY(-7px); background: rgba(255,255,255,0.03); }
+    .feat-icon { font-size: 38px; color: var(--gold); margin-bottom: 22px; }
+    .feat-title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 14px; }
+    .feat-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.85; }
+
+    /* MENU */
+    .menu-section { padding: 100px 80px; background: #fff; text-align: center; }
+    .menu-section .section-sub { margin: 0 auto 60px; }
+    .menu-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 56px; flex-wrap: wrap; }
+    .tab-btn {
+      padding: 12px 26px; border: 2px solid #ddd;
+      background: transparent; border-radius: 3px;
+      font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 700; cursor: pointer; color: var(--gray); transition: all 0.3s;
+    }
+    .tab-btn:hover, .tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; }
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+      gap: 1px; background: #ebebeb; border: 1px solid #ebebeb;
+      text-align: left; max-width: 1100px; margin: 0 auto;
+    }
+    .menu-item {
+      background: #fff; padding: 26px 30px;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 16px; transition: background 0.3s;
+    }
+    .menu-item:hover { background: var(--cream); }
+    .mi-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+    .mi-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
+    .mi-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); white-space: nowrap; }
+
+    /* SPECIALS */
+    .specials { background: var(--cream); padding: 100px 80px; }
+    .specials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 60px; }
+    .sp-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07); transition: all 0.4s; }
+    .sp-card:hover { transform: translateY(-9px); box-shadow: 0 20px 55px rgba(0,0,0,0.13); }
+    .sp-img-wrap { overflow: hidden; }
+    .sp-img-wrap img { width: 100%; height: 260px; object-fit: cover; display: block; transition: transform 0.6s; }
+    .sp-card:hover .sp-img-wrap img { transform: scale(1.06); }
+    .sp-body { padding: 28px; }
+    .sp-tag { display: inline-block; background: var(--red); color: #fff; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 4px 12px; border-radius: 2px; margin-bottom: 14px; }
+    .sp-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+    .sp-desc { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 22px; }
+    .sp-foot { display: flex; justify-content: space-between; align-items: center; }
+    .sp-price { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--red); }
+    .btn-sm { background: var(--dark); color: #fff; padding: 10px 20px; border-radius: 3px; text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
+    .btn-sm:hover { background: var(--red); }
+
+    /* GALLERY */
+    .gallery { background: #fff; padding: 100px 80px; text-align: center; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      grid-template-rows: 270px 270px;
+      gap: 8px; margin-top: 60px;
+    }
+    .gal-item { overflow: hidden; border-radius: 3px; position: relative; }
+    .gal-item:first-child { grid-column: 1/3; grid-row: 1/3; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .gal-item:hover img { transform: scale(1.08); }
+    .gal-ov { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background 0.4s; }
+    .gal-item:hover .gal-ov { background: rgba(0,0,0,0.28); }
+    .gal-ov i { color: #fff; font-size: 28px; opacity: 0; transition: opacity 0.4s; }
+    .gal-item:hover .gal-ov i { opacity: 1; }
+
+    /* RESERVATION */
+    .reservation {
+      background: var(--dark); color: #fff;
+      padding: 100px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 90px; align-items: center;
+    }
+    .reservation .section-label { color: var(--gold); }
+    .reservation .section-title { color: #fff; }
+    .reservation .section-sub { color: rgba(255,255,255,0.55); }
+    .res-info { display: flex; flex-direction: column; gap: 34px; margin-top: 48px; }
+    .ri-item { display: flex; gap: 20px; align-items: flex-start; }
+    .ri-icon { width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 17px; flex-shrink: 0; }
+    .ri-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 5px; }
+    .ri-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; }
+    .res-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 48px; }
+    .form-group { margin-bottom: 22px; }
+    .form-group label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; font-weight: 700; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14);
+      color: #fff; padding: 14px 16px; border-radius: 4px; font-size: 15px;
+      font-family: 'Lato', sans-serif; transition: border-color 0.3s; -webkit-appearance: none;
+    }
+    .form-group select option { background: #222; color: #fff; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.28); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-submit {
+      width: 100%; background: var(--red); color: #fff;
+      padding: 18px; border: none; border-radius: 4px;
+      font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 700; cursor: pointer; transition: all 0.3s;
+      font-family: 'Lato', sans-serif; margin-top: 6px;
+    }
+    .btn-submit:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,30,58,0.45); }
+
+    /* FOOTER */
+    footer { background: #0f0f0f; color: #fff; padding: 72px 80px 36px; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .f-logo { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #fff; letter-spacing: 3px; margin-bottom: 14px; display: block; }
+    .f-logo span { color: var(--gold); }
+    .f-tagline { font-size: 14px; color: rgba(255,255,255,0.38); line-height: 1.8; margin-bottom: 28px; max-width: 290px; }
+    .socials { display: flex; gap: 10px; }
+    .soc-link { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.13); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); font-size: 14px; transition: all 0.3s; text-decoration: none; }
+    .soc-link:hover { border-color: var(--red); background: var(--red); color: #fff; }
+    .f-head { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 22px; }
+    .f-links { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+    .f-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .f-links a:hover { color: #fff; }
+    .footer-bot { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; font-size: 13px; color: rgba(255,255,255,0.28); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .about, .reservation { grid-template-columns: 1fr; padding: 80px 40px; }
+      .features-grid, .specials-grid { grid-template-columns: 1fr; }
+      .about-img-wrap img { height: 400px; }
+      .about-badge { bottom: -16px; right: 0; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav.scrolled { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .menu-section, .gallery, .specials, .features { padding: 70px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gal-item:first-child { grid-column: 1/3; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-bot { flex-direction: column; gap: 10px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gal-item:first-child { grid-column: auto; }
+      .footer-top { grid-template-columns: 1fr; }
+      .res-form { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">SPIZZI<span>GO</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#specials">Specials</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reservation">Reservations</a></li>
+  </ul>
+  <a href="https://order-41st.spizzigo.com/" target="_blank" class="nav-cta">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Ristorante Italiano & Pizzeria — Doral, FL — Since 2005</span>
+    <h1>Italian Classics<br>for <em>Every</em> Occasion</h1>
+    <p>Authentic wood-fired pizza, handcrafted pasta, and the soul of Italy — right here in the heart of Doral.</p>
+    <div class="hero-btns">
+      <a href="https://order-41st.spizzigo.com/" target="_blank" class="btn-primary">Order Now</a>
+      <a href="#menu" class="btn-outline">View Menu</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PROMO BAR -->
+<div class="promo-bar">
+  Lunch Special — <span>$15.95 / person</span> &nbsp;·&nbsp; Monday – Friday &nbsp;·&nbsp; 12 PM – 3 PM &nbsp;·&nbsp; Dine In Only
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img-wrap fade-in">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Spizzigo interior" />
+    <div class="about-badge">
+      <span class="yr">20+</span>
+      <span class="lbl">Years</span>
+    </div>
+  </div>
+  <div>
+    <span class="section-label fade-in">Our Story</span>
+    <h2 class="section-title fade-in d1">Doral's First<br><em>Wood-Oven</em> Pizzeria</h2>
+    <p class="section-sub fade-in d2">Founded in 2005, Spizzigo brought the art of the wood-fired oven to Doral — blending Old World Italian tradition with the warmth and energy of Miami. Every dish, from our slow-simmered sauces to our hand-stretched doughs, is made with care, authenticity, and amore.</p>
+    <p class="section-sub fade-in d2" style="margin-top:16px;">Whether it's a quick lunch, a date night, or a family celebration, our kitchen is always on fire and our table is always yours.</p>
+    <div class="about-stats">
+      <div class="stat fade-in d3"><div class="stat-num">2005</div><div class="stat-lbl">Est. in Doral, FL</div></div>
+      <div class="stat fade-in d3"><div class="stat-num">50+</div><div class="stat-lbl">Menu Items</div></div>
+      <div class="stat fade-in d4"><div class="stat-num">★ 4.5</div><div class="stat-lbl">Guest Rating</div></div>
+      <div class="stat fade-in d4"><div class="stat-num">900°F</div><div class="stat-lbl">Wood-Fired Oven</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <span class="section-label">Why Spizzigo</span>
+  <h2 class="section-title">The <em>Spizzigo</em> Difference</h2>
+  <div class="features-grid">
+    <div class="feat-card fade-in">
+      <div class="feat-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+      <div class="feat-title">Wood-Fired Oven</div>
+      <p class="feat-desc">Our authentic Italian wood-burning oven reaches 900°F — giving every pizza a perfectly blistered, airy crust you simply can't fake.</p>
+    </div>
+    <div class="feat-card fade-in d1">
+      <div class="feat-icon"><i class="fa-solid fa-leaf"></i></div>
+      <div class="feat-title">Fresh Ingredients</div>
+      <p class="feat-desc">Seasonal produce, imported Italian cheeses, and premium cuts sourced daily. No shortcuts, no shortcuts, no compromises.</p>
+    </div>
+    <div class="feat-card fade-in d2">
+      <div class="feat-icon"><i class="fa-solid fa-wine-glass-empty"></i></div>
+      <div class="feat-title">Craft Bar Program</div>
+      <p class="feat-desc">Curated Italian wines, handcrafted cocktails, and fine prosecco — our bar team turns every meal into an experience worth lingering over.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <span class="section-label">Explore</span>
+  <h2 class="section-title">Our <em>Menu</em></h2>
+  <p class="section-sub">Classic dishes, timeless flavors — something for every table.</p>
+
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="showTab('antipasti',this)">Antipasti</button>
+    <button class="tab-btn" onclick="showTab('pizza',this)">Pizze</button>
+    <button class="tab-btn" onclick="showTab('pasta',this)">Pasta & Risotto</button>
+    <button class="tab-btn" onclick="showTab('dolci',this)">Dolci</button>
+    <button class="tab-btn" onclick="showTab('bar',this)">Bar</button>
+  </div>
+
+  <div id="antipasti" class="menu-panel active">
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="mi-name">Bruschette al Pomodoro</div><div class="mi-desc">Grilled bread, heirloom tomatoes, basil, EVOO</div></div><div class="mi-price">$8</div></div>
+      <div class="menu-item"><div><div class="mi-name">Burrata Panino</div><div class="mi-desc">Creamy burrata, prosciutto crudo, arugula, truffle oil</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Calamari Fritti</div><div class="mi-desc">Crispy fried calamari, spicy marinara, lemon aioli</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Carpaccio Classico</div><div class="mi-desc">Beef tenderloin, capers, arugula, Parmigiano shavings</div></div><div class="mi-price">$17</div></div>
+      <div class="menu-item"><div><div class="mi-name">Polpetta Gigante</div><div class="mi-desc">1 lb Italian meatball stuffed with ricotta, San Marzano sauce</div></div><div class="mi-price">$19</div></div>
+      <div class="menu-item"><div><div class="mi-name">Truffle Fries</div><div class="mi-desc">Crispy fries, truffle oil, Parmigiano Reggiano, herbs</div></div><div class="mi-price">$8</div></div>
+    </div>
+  </div>
+
+  <div id="pizza" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="mi-name">Margherita</div><div class="mi-desc">San Marzano tomato, fior di latte, fresh basil</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pepperoni</div><div class="mi-desc">Tomato, mozzarella, imported Italian pepperoni</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Burrata Pizza</div><div class="mi-desc">Tomato base, fresh burrata, cherry tomatoes, basil oil</div></div><div class="mi-price">$20</div></div>
+      <div class="menu-item"><div><div class="mi-name">Gamberetti</div><div class="mi-desc">Garlic cream, fresh shrimp, mozzarella, lemon zest, arugula</div></div><div class="mi-price">$22</div></div>
+      <div class="menu-item"><div><div class="mi-name">Cotto e Funghi</div><div class="mi-desc">Tomato, mozzarella, smoked ham, mushrooms, oregano</div></div><div class="mi-price">$18</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pizza Carbonara</div><div class="mi-desc">Cream base, pancetta, egg yolk, Pecorino, black pepper</div></div><div class="mi-price">$20</div></div>
+    </div>
+  </div>
+
+  <div id="pasta" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="mi-name">Penne alla Carbonara</div><div class="mi-desc">Pancetta, free-range egg, Pecorino Romano, black pepper</div></div><div class="mi-price">$18</div></div>
+      <div class="menu-item"><div><div class="mi-name">Spaghetti al Pesto</div><div class="mi-desc">Housemade basil pesto, pine nuts, Parmigiano, cherry tomatoes</div></div><div class="mi-price">$17</div></div>
+      <div class="menu-item"><div><div class="mi-name">Ravioli Short Rib</div><div class="mi-desc">Braised short rib stuffed ravioli, truffle butter, sage</div></div><div class="mi-price">$26</div></div>
+      <div class="menu-item"><div><div class="mi-name">Linguine Frutti di Mare</div><div class="mi-desc">Clams, mussels, shrimp, scallops, white wine, cherry tomatoes</div></div><div class="mi-price">$28</div></div>
+      <div class="menu-item"><div><div class="mi-name">Gnocchi al Ragù</div><div class="mi-desc">Housemade potato gnocchi, slow-braised Bolognese ragù</div></div><div class="mi-price">$22</div></div>
+      <div class="menu-item"><div><div class="mi-name">Salmone e Risotto</div><div class="mi-desc">Pan-seared salmon, Parmigiano risotto, lemon butter</div></div><div class="mi-price">$28</div></div>
+    </div>
+  </div>
+
+  <div id="dolci" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="mi-name">Tiramisu della Casa</div><div class="mi-desc">Ladyfingers, mascarpone, espresso, fine cocoa</div></div><div class="mi-price">$9</div></div>
+      <div class="menu-item"><div><div class="mi-name">Crème Brûlée</div><div class="mi-desc">Vanilla custard, caramelized sugar crust, seasonal berries</div></div><div class="mi-price">$8</div></div>
+      <div class="menu-item"><div><div class="mi-name">Chocolate Lava Cake</div><div class="mi-desc">Warm dark chocolate, molten center, vanilla gelato</div></div><div class="mi-price">$10</div></div>
+      <div class="menu-item"><div><div class="mi-name">Gelato</div><div class="mi-desc">Two scoops of seasonal Italian gelato</div></div><div class="mi-price">$6</div></div>
+      <div class="menu-item"><div><div class="mi-name">Calzone di Nutella</div><div class="mi-desc">Wood-fired pastry, Nutella, seasonal fruit, powdered sugar</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Panna Cotta</div><div class="mi-desc">Vanilla bean panna cotta, wild berry coulis, mint</div></div><div class="mi-price">$8</div></div>
+    </div>
+  </div>
+
+  <div id="bar" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div><div class="mi-name">Negroni</div><div class="mi-desc">Gin, Campari, sweet vermouth, orange peel</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Lychee Martini</div><div class="mi-desc">Vodka, lychee liqueur, pineapple juice, lime</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Mojito Royale</div><div class="mi-desc">White rum, fresh mint, lime, prosecco, cane sugar</div></div><div class="mi-price">$13</div></div>
+      <div class="menu-item"><div><div class="mi-name">Passion Fruit Mojito</div><div class="mi-desc">Rum, passion fruit, mint, lime, soda water</div></div><div class="mi-price">$13</div></div>
+      <div class="menu-item"><div><div class="mi-name">Chianti — Glass</div><div class="mi-desc">Classic Tuscan red, medium-bodied, cherry &amp; earth notes</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Prosecco — Glass</div><div class="mi-desc">Light, crisp, fine bubbles — perfect for every occasion</div></div><div class="mi-price">$10</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:56px;">
+    <a href="https://order-41st.spizzigo.com/" target="_blank" class="btn-primary">Order Online</a>
+  </div>
+</section>
+
+<!-- SPECIALS -->
+<section class="specials" id="specials">
+  <span class="section-label">Chef's Picks</span>
+  <h2 class="section-title">House <em>Signatures</em></h2>
+  <div class="specials-grid">
+    <div class="sp-card fade-in">
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=700&q=80" alt="Margherita Pizza" /></div>
+      <div class="sp-body">
+        <span class="sp-tag">Most Popular</span>
+        <div class="sp-name">Pizza Margherita</div>
+        <p class="sp-desc">The queen of pizzas. San Marzano tomatoes, fior di latte, fresh basil — straight from our 900°F wood-fired oven.</p>
+        <div class="sp-foot"><span class="sp-price">$14</span><a href="https://order-41st.spizzigo.com/" target="_blank" class="btn-sm">Order Now</a></div>
+      </div>
+    </div>
+    <div class="sp-card fade-in d1">
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&q=80" alt="Linguine ai Frutti di Mare" /></div>
+      <div class="sp-body">
+        <span class="sp-tag">Chef's Favorite</span>
+        <div class="sp-name">Linguine Frutti di Mare</div>
+        <p class="sp-desc">Clams, mussels, shrimp, and scallops tossed in white wine tomato sauce over silky linguine.</p>
+        <div class="sp-foot"><span class="sp-price">$28</span><a href="https://order-41st.spizzigo.com/" target="_blank" class="btn-sm">Order Now</a></div>
+      </div>
+    </div>
+    <div class="sp-card fade-in d2">
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=700&q=80" alt="Tiramisu" /></div>
+      <div class="sp-body">
+        <span class="sp-tag">Sweet Finish</span>
+        <div class="sp-name">Tiramisu della Casa</div>
+        <p class="sp-desc">Espresso-soaked ladyfingers, silky mascarpone cream, dusted with fine Italian cocoa. Our most loved dessert.</p>
+        <div class="sp-foot"><span class="sp-price">$9</span><a href="https://order-41st.spizzigo.com/" target="_blank" class="btn-sm">Order Now</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <span class="section-label">Our World</span>
+  <h2 class="section-title">A Taste of <em>Spizzigo</em></h2>
+  <div class="gallery-grid">
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Restaurant ambiance" />
+      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Wood-fired pizza" />
+      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?w=600&q=80" alt="Burrata" />
+      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Pasta" />
+      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=80" alt="Risotto" />
+      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section class="reservation" id="reservation">
+  <div>
+    <span class="section-label">Join Us</span>
+    <h2 class="section-title">Make a <em>Reservation</em></h2>
+    <p class="section-sub">Book your table and let us take care of the rest. Walk-ins welcome — reservations recommended on weekends.</p>
+    <div class="res-info">
+      <div class="ri-item">
+        <div class="ri-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <div><div class="ri-label">Location</div><div class="ri-text">11402 NW 41st Street<br>Doral, Florida 33178</div></div>
+      </div>
+      <div class="ri-item">
+        <div class="ri-icon"><i class="fa-solid fa-clock"></i></div>
+        <div><div class="ri-label">Hours</div><div class="ri-text">Mon – Thu: 11:30 AM – 10:00 PM<br>Fri – Sun: 11:30 AM – 11:00 PM</div></div>
+      </div>
+      <div class="ri-item">
+        <div class="ri-icon"><i class="fa-solid fa-phone"></i></div>
+        <div><div class="ri-label">Phone</div><div class="ri-text">(305) 470-9262</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="res-form fade-in">
+    <div class="form-row">
+      <div class="form-group"><label>First Name</label><input type="text" placeholder="Marco" /></div>
+      <div class="form-group"><label>Last Name</label><input type="text" placeholder="Rossi" /></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="marco@example.com" /></div>
+    <div class="form-group"><label>Phone</label><input type="tel" placeholder="(305) 000-0000" /></div>
+    <div class="form-row">
+      <div class="form-group"><label>Date</label><input type="date" /></div>
+      <div class="form-group">
+        <label>Time</label>
+        <select>
+          <option value="">Select time</option>
+          <option>11:30 AM</option><option>12:00 PM</option><option>12:30 PM</option>
+          <option>1:00 PM</option><option>6:00 PM</option><option>6:30 PM</option>
+          <option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option><option>8:30 PM</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Guests</label>
+      <select>
+        <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
+        <option>4 Guests</option><option>5 Guests</option><option>6+ Guests</option>
+      </select>
+    </div>
+    <button class="btn-submit">Reserve My Table</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="f-logo">SPIZZI<span>GO</span></span>
+      <p class="f-tagline">Italian classics for every occasion — wood-fired, handcrafted, and made with amore since 2005.</p>
+      <div class="socials">
+        <a href="#" class="soc-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="soc-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="soc-link"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="soc-link"><i class="fab fa-yelp"></i></a>
+      </div>
+    </div>
+    <div>
+      <div class="f-head">Navigate</div>
+      <ul class="f-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#specials">Chef's Picks</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reservation">Reservations</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-head">Hours</div>
+      <ul class="f-links">
+        <li><a href="#">Mon–Thu: 11:30 AM – 10 PM</a></li>
+        <li><a href="#">Fri–Sun: 11:30 AM – 11 PM</a></li>
+        <li><a href="#">Lunch Special: Mon–Fri</a></li>
+        <li><a href="#">12 PM – 3 PM · $15.95</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-head">Contact</div>
+      <ul class="f-links">
+        <li><a href="tel:3054709262">(305) 470-9262</a></li>
+        <li><a href="#">11402 NW 41st Street</a></li>
+        <li><a href="#">Doral, Florida 33178</a></li>
+        <li><a href="https://order-41st.spizzigo.com/" target="_blank">Order Online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span>&copy; 2025 Spizzigo Ristorante. All rights reserved.</span>
+    <span>Made with love in Doral, FL</span>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Menu tabs
+  function showTab(id, btn) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
