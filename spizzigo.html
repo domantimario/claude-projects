@@ -320,6 +320,85 @@
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
+    /* HAMBURGER */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15,15,15,0.98); z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 36px;
+      opacity: 0; pointer-events: none; transition: opacity 0.35s;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; display: flex; }
+    .mobile-menu a {
+      color: #fff; text-decoration: none; font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 600; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu .mob-order {
+      background: var(--red); font-family: 'Lato', sans-serif;
+      font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 700; padding: 16px 40px; border-radius: 3px; margin-top: 8px;
+    }
+
+    /* BACK TO TOP */
+    .back-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 900;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--red); color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      opacity: 0; pointer-events: none; transform: translateY(12px);
+      transition: all 0.35s;
+    }
+    .back-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .back-top:hover { background: var(--red-dark); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(196,30,58,0.45); }
+
+    /* FLOATING ORDER BUTTON (mobile) */
+    .float-order {
+      display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 800;
+      background: var(--red); color: #fff; text-align: center;
+      padding: 18px; font-size: 14px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 700; text-decoration: none;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ACTIVE NAV */
+    .nav-links a.active { color: #fff; }
+    .nav-links a.active::after { width: 100%; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 32px;
+      color: #fff; font-size: 36px; cursor: pointer; background: none; border: none;
+      line-height: 1; opacity: 0.7; transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: #1a1a1a; color: #fff; padding: 16px 28px; border-radius: 6px;
+      font-size: 15px; z-index: 3000; opacity: 0; pointer-events: none;
+      transition: all 0.4s; white-space: nowrap;
+      border-left: 4px solid var(--gold);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* FOCUS STATES */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px;
+    }
+
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .about, .reservation { grid-template-columns: 1fr; padding: 80px 40px; }
@@ -330,7 +409,10 @@
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       nav.scrolled { padding: 12px 24px; }
-      .nav-links { display: none; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .float-order { display: block; }
+      .back-top { bottom: 80px; }
       .menu-section, .gallery, .specials, .features { padding: 70px 24px; }
       .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
       .gal-item:first-child { grid-column: 1/3; }
@@ -351,15 +433,45 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="#" class="nav-logo">SPIZZI<span>GO</span></a>
-  <ul class="nav-links">
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
     <li><a href="#about">Our Story</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#specials">Specials</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#reservation">Reservations</a></li>
   </ul>
-  <a href="https://spizzigo.com/" target="_blank" class="nav-cta">Order Now</a>
+  <a href="https://spizzigo.com/" target="_blank" class="nav-cta" aria-label="Order food online">Order Now</a>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <a href="#about" class="mob-link">Our Story</a>
+  <a href="#menu" class="mob-link">Menu</a>
+  <a href="#specials" class="mob-link">Specials</a>
+  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#reservation" class="mob-link">Reservations</a>
+  <a href="https://spizzigo.com/" target="_blank" class="mob-order">Order Now</a>
+</div>
+
+<!-- FLOATING ORDER (mobile) -->
+<a href="https://spizzigo.com/" target="_blank" class="float-order" aria-label="Order online">Order Now — spizzigo.com</a>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <img id="lightboxImg" src="" alt="Gallery image" />
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -388,7 +500,7 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-img-wrap fade-in">
-    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Spizzigo interior" />
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Spizzigo interior" loading="lazy" />
     <div class="about-badge">
       <span class="yr">20+</span>
       <span class="lbl">Years</span>
@@ -511,7 +623,7 @@
   <h2 class="section-title">House <em>Signatures</em></h2>
   <div class="specials-grid">
     <div class="sp-card fade-in">
-      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=700&q=80" alt="Margherita Pizza" /></div>
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=700&q=80" alt="Margherita Pizza" loading="lazy" /></div>
       <div class="sp-body">
         <span class="sp-tag">Most Popular</span>
         <div class="sp-name">Pizza Margherita</div>
@@ -520,7 +632,7 @@
       </div>
     </div>
     <div class="sp-card fade-in d1">
-      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&q=80" alt="Linguine ai Frutti di Mare" /></div>
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=700&q=80" alt="Linguine ai Frutti di Mare" loading="lazy" /></div>
       <div class="sp-body">
         <span class="sp-tag">Chef's Favorite</span>
         <div class="sp-name">Linguine Frutti di Mare</div>
@@ -529,7 +641,7 @@
       </div>
     </div>
     <div class="sp-card fade-in d2">
-      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=700&q=80" alt="Tiramisu" /></div>
+      <div class="sp-img-wrap"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=700&q=80" alt="Tiramisu" loading="lazy" /></div>
       <div class="sp-body">
         <span class="sp-tag">Sweet Finish</span>
         <div class="sp-name">Tiramisu della Casa</div>
@@ -545,24 +657,24 @@
   <span class="section-label">Our World</span>
   <h2 class="section-title">A Taste of <em>Spizzigo</em></h2>
   <div class="gallery-grid">
-    <div class="gal-item">
-      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Restaurant ambiance" />
+    <div class="gal-item" onclick="openLightbox(this)" style="cursor:pointer;" role="button" tabindex="0" aria-label="View full image: Restaurant ambiance">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80" alt="Restaurant ambiance" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item">
-      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Wood-fired pizza" />
+    <div class="gal-item" onclick="openLightbox(this)" style="cursor:pointer;" role="button" tabindex="0" aria-label="View full image: Wood-fired pizza">
+      <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Wood-fired pizza" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item">
-      <img src="https://img1.wsimg.com/isteam/ip/3b8fcc1e-a374-46e2-bfe2-b420f818662b/Spizzigo_Burrata_2880x2304%20(1).jpg/:/cr=t:18.75%25,l:0%25,w:100%25,h:62.5%25/rs=w:600,h:300,cg:true" alt="Spizzigo Burrata" />
+    <div class="gal-item" onclick="openLightbox(this)" style="cursor:pointer;" role="button" tabindex="0" aria-label="View full image: Spizzigo Burrata">
+      <img src="https://img1.wsimg.com/isteam/ip/3b8fcc1e-a374-46e2-bfe2-b420f818662b/Spizzigo_Burrata_2880x2304%20(1).jpg/:/cr=t:18.75%25,l:0%25,w:100%25,h:62.5%25/rs=w:600,h:300,cg:true" alt="Spizzigo Burrata" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item">
-      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Pasta" />
+    <div class="gal-item" onclick="openLightbox(this)" style="cursor:pointer;" role="button" tabindex="0" aria-label="View full image: Fresh pasta">
+      <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600&q=80" alt="Fresh pasta" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item">
-      <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=80" alt="Risotto" />
+    <div class="gal-item" onclick="openLightbox(this)" style="cursor:pointer;" role="button" tabindex="0" aria-label="View full image: Risotto">
+      <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=80" alt="Risotto" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
   </div>
@@ -668,23 +780,108 @@
 </footer>
 
 <script>
-  // Navbar scroll effect
+  // ── Navbar scroll effect ──
   const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    backTop.classList.toggle('visible', y > 400);
+    highlightNav();
+  });
 
-  // Fade-in on scroll
+  // ── Back to top ──
+  backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // ── Active nav highlighting ──
+  const sections = ['about','menu','specials','gallery','reservation'];
+  function highlightNav() {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 120) current = id;
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+
+  // ── Hamburger mobile menu ──
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mob-link, .mob-order').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Fade-in on scroll ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Menu tabs
+  // ── Menu tabs ──
   function showTab(id, btn) {
     document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
   }
+
+  // ── Gallery lightbox ──
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  function openLightbox(item) {
+    const img = item.querySelector('img');
+    lightboxImg.src = img.src.replace(/w=\d+/, 'w=1400');
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  // Keyboard support for gallery items
+  document.querySelectorAll('.gal-item[tabindex]').forEach(item => {
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(item); } });
+  });
+
+  // ── Reservation form success toast ──
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+  document.querySelector('.btn-submit').addEventListener('click', e => {
+    e.preventDefault();
+    const inputs = document.querySelectorAll('.res-form input, .res-form select');
+    let valid = true;
+    inputs.forEach(inp => {
+      if (!inp.value) { inp.style.borderColor = 'rgba(196,30,58,0.7)'; valid = false; }
+      else inp.style.borderColor = '';
+    });
+    if (valid) {
+      showToast('✓ Reservation request sent! We\'ll confirm shortly.');
+      inputs.forEach(inp => inp.value = '');
+    } else {
+      showToast('Please fill in all fields.');
+    }
+  });
 </script>
 </body>
 </html>
