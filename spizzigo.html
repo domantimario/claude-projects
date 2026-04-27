@@ -14,39 +14,41 @@
       --red: #C41E3A; --red-dark: #9B1530;
       --cream: #FDF8F0; --gold: #C9A84C;
       --dark: #1a1a1a; --gray: #6b6b6b;
+      --green: #2E7D32;
     }
 
-    /* NAV */
-    nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 22px 64px; display: flex; align-items: center; justify-content: space-between; transition: all 0.4s ease; }
-    nav.scrolled { background: rgba(20,20,20,0.97); padding: 14px 64px; box-shadow: 0 2px 40px rgba(0,0,0,0.35); backdrop-filter: blur(10px); }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #fff; letter-spacing: 3px; text-decoration: none; }
-    .nav-logo span { color: var(--gold); }
-    .nav-links { display: flex; gap: 36px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; position: relative; }
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 16px 64px; display: flex; align-items: center; justify-content: space-between; transition: all 0.4s ease; }
+    nav.scrolled { background: rgba(20,20,20,0.97); padding: 12px 64px; box-shadow: 0 2px 40px rgba(0,0,0,0.35); backdrop-filter: blur(10px); }
+    .nav-logo img { height: 48px; width: auto; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4)); transition: height 0.4s; }
+    nav.scrolled .nav-logo img { height: 40px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-    .nav-cta { background: var(--red); color: #fff; padding: 12px 28px; border-radius: 3px; text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
+    .nav-cta { background: var(--red); color: #fff; padding: 12px 28px; border-radius: 3px; text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; white-space: nowrap; }
     .nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(196,30,58,0.4); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
     .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,15,15,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 36px; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10,10,10,0.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; opacity: 0; pointer-events: none; transition: opacity 0.35s; }
     .mobile-menu.open { opacity: 1; pointer-events: all; display: flex; }
-    .mobile-menu a { color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 600; transition: color 0.3s; }
+    .mobile-menu img { height: 56px; margin-bottom: 8px; }
+    .mobile-menu a { color: #fff; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; transition: color 0.3s; }
     .mobile-menu a:hover { color: var(--gold); }
     .mobile-menu .mob-order { font-family: 'Lato', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 16px 40px; background: var(--red); border-radius: 3px; margin-top: 8px; }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero { height: 100vh; min-height: 700px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #111; }
-    .hero-bg { position: absolute; inset: 0; background-image: url('terrace.PNG'); background-size: cover; background-position: center; opacity: 0.52; animation: heroPan 20s ease-in-out infinite alternate; }
-    @keyframes heroPan { 0% { transform: scale(1.06) translateX(0); } 100% { transform: scale(1.06) translateX(-30px); } }
-    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%); }
+    .hero-bg { position: absolute; inset: 0; background-image: url('terrace.PNG'); background-size: cover; background-position: center top; opacity: 0.55; animation: heroPan 22s ease-in-out infinite alternate; }
+    @keyframes heroPan { 0% { transform: scale(1.06) translateX(0); } 100% { transform: scale(1.06) translateX(-20px); } }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.72) 100%); }
     .hero-content { position: relative; text-align: center; color: #fff; max-width: 820px; padding: 0 24px; animation: fadeUp 1.1s ease both; }
     .hero-eyebrow { display: block; font-size: 11px; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(54px, 8vw, 96px); font-weight: 700; line-height: 1.05; margin-bottom: 24px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(52px, 8vw, 94px); font-weight: 700; line-height: 1.05; margin-bottom: 24px; }
     .hero h1 em { font-style: italic; color: var(--gold); }
     .hero p { font-size: 18px; font-weight: 300; line-height: 1.8; margin-bottom: 48px; color: rgba(255,255,255,0.82); max-width: 540px; margin-left: auto; margin-right: auto; }
     .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
@@ -58,24 +60,24 @@
     .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5)); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
-    /* PROMO BAR */
-    .promo-bar { background: var(--red); color: #fff; text-align: center; padding: 14px 24px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; cursor: pointer; }
+    /* ── PROMO BAR ── */
+    .promo-bar { background: var(--red); color: #fff; text-align: center; padding: 14px 24px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; display: block; text-decoration: none; transition: background 0.3s; }
     .promo-bar:hover { background: var(--red-dark); }
     .promo-bar span { color: #FFE08A; }
 
-    /* SHARED */
+    /* ── SHARED ── */
     .section-label { display: block; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--red); margin-bottom: 14px; font-weight: 700; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.1; color: var(--dark); margin-bottom: 20px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(34px, 5vw, 56px); font-weight: 700; line-height: 1.1; color: var(--dark); margin-bottom: 20px; }
     .section-title em { font-style: italic; color: var(--red); }
     .section-sub { font-size: 17px; color: var(--gray); line-height: 1.8; max-width: 560px; }
-    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-in { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.15s; } .d2 { transition-delay: 0.3s; } .d3 { transition-delay: 0.45s; } .d4 { transition-delay: 0.6s; }
+    .d1 { transition-delay: 0.12s; } .d2 { transition-delay: 0.24s; } .d3 { transition-delay: 0.36s; } .d4 { transition-delay: 0.48s; }
 
-    /* ABOUT */
+    /* ── ABOUT ── */
     .about { background: var(--cream); padding: 110px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: center; }
     .about-img-wrap { position: relative; }
-    .about-img-wrap img { width: 100%; height: 580px; object-fit: cover; border-radius: 4px; display: block; }
+    .about-img-wrap img { width: 100%; height: 560px; object-fit: cover; object-position: center; border-radius: 4px; display: block; image-rendering: auto; }
     .about-badge { position: absolute; bottom: -28px; right: -28px; background: var(--red); color: #fff; width: 128px; height: 128px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; text-align: center; box-shadow: 0 12px 40px rgba(196,30,58,0.45); }
     .about-badge .yr { font-size: 30px; font-weight: 700; line-height: 1; }
     .about-badge .lbl { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.88; }
@@ -84,175 +86,190 @@
     .stat-num { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; color: var(--red); line-height: 1; }
     .stat-lbl { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
-    /* FEATURES */
+    /* ── FEATURES ── */
     .features { background: var(--dark); color: #fff; padding: 100px 80px; text-align: center; }
     .features .section-label { color: var(--gold); }
     .features .section-title { color: #fff; }
-    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 60px; max-width: 1060px; margin-left: auto; margin-right: auto; }
-    .feat-card { padding: 44px 32px; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; transition: all 0.4s; }
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 60px; max-width: 1060px; margin-left: auto; margin-right: auto; }
+    .feat-card { padding: 40px 28px; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; transition: all 0.4s; }
     .feat-card:hover { border-color: var(--gold); transform: translateY(-7px); background: rgba(255,255,255,0.03); }
-    .feat-icon { font-size: 38px; color: var(--gold); margin-bottom: 22px; }
-    .feat-title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 14px; }
+    .feat-icon { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
+    .feat-title { font-family: 'Playfair Display', serif; font-size: 21px; margin-bottom: 12px; }
     .feat-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.85; }
 
-    /* LUNCH SPECIAL */
+    /* ── LUNCH SPECIAL ── */
     .lunch { background: #fff; padding: 100px 80px; }
-    .lunch-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .lunch-badge-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-    .lunch-price-badge { background: var(--red); color: #fff; font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; padding: 10px 22px; border-radius: 4px; }
-    .lunch-days { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); font-weight: 700; }
-    .lunch-desc { font-size: 16px; color: var(--gray); line-height: 1.8; margin-bottom: 36px; }
-    .lunch-steps { display: flex; flex-direction: column; gap: 20px; }
-    .lunch-step { display: flex; gap: 20px; align-items: flex-start; }
-    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: #fff; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-body {}
-    .step-title { font-weight: 700; font-size: 15px; color: var(--dark); margin-bottom: 6px; }
-    .step-items { font-size: 14px; color: var(--gray); line-height: 1.7; }
-    .lunch-img-wrap { position: relative; border-radius: 4px; overflow: hidden; }
-    .lunch-img-wrap img { width: 100%; height: 520px; object-fit: cover; display: block; border-radius: 4px; }
-    .lunch-img-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%); color: #fff; }
-    .lunch-img-note { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; font-weight: 700; }
-    .lunch-img-sub { font-size: 14px; opacity: 0.85; }
+    .lunch-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; margin: 0 auto; }
+    .lunch-header { display: flex; align-items: center; gap: 20px; margin-bottom: 8px; flex-wrap: wrap; }
+    .lunch-price-tag { background: var(--red); color: #fff; font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; padding: 10px 24px; border-radius: 4px; line-height: 1; }
+    .lunch-meta { font-size: 13px; color: var(--gray); letter-spacing: 1px; line-height: 1.8; }
+    .lunch-meta strong { color: var(--dark); }
+    .lunch-meta .note { color: var(--red); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; }
+    .lunch-desc { font-size: 16px; color: var(--gray); line-height: 1.8; margin: 20px 0 32px; }
+    .lunch-course { margin-bottom: 28px; }
+    .course-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .course-num { width: 34px; height: 34px; border-radius: 50%; background: var(--gold); color: #fff; font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .course-title { font-weight: 700; font-size: 15px; color: var(--dark); letter-spacing: 0.5px; text-transform: uppercase; }
+    .course-items { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-left: 46px; }
+    .course-item { font-size: 14px; color: var(--gray); line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+    .course-item::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+    .lunch-note { background: var(--cream); border-left: 3px solid var(--gold); padding: 14px 18px; font-size: 13px; color: var(--gray); line-height: 1.7; margin-top: 24px; border-radius: 0 4px 4px 0; }
+    .lunch-img-wrap { position: relative; border-radius: 4px; overflow: hidden; top: 0; }
+    .lunch-img-wrap img { width: 100%; height: 580px; object-fit: cover; object-position: center; display: block; border-radius: 4px; image-rendering: auto; }
+    .lunch-img-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px; background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, transparent 100%); color: #fff; }
+    .lunch-img-note { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; font-weight: 700; }
+    .lunch-img-sub { font-size: 15px; opacity: 0.88; font-family: 'Playfair Display', serif; font-style: italic; }
 
-    /* MENU */
+    /* ── MENU ── */
     .menu-section { padding: 100px 80px; background: var(--cream); text-align: center; }
-    .menu-section .section-sub { margin: 0 auto 60px; }
-    .menu-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 56px; flex-wrap: wrap; }
-    .tab-btn { padding: 12px 26px; border: 2px solid #ddd; background: transparent; border-radius: 3px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; cursor: pointer; color: var(--gray); transition: all 0.3s; }
+    .menu-section .section-sub { margin: 0 auto 56px; }
+    .menu-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 52px; flex-wrap: wrap; }
+    .tab-btn { padding: 12px 26px; border: 2px solid #d8d8d8; background: transparent; border-radius: 3px; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; cursor: pointer; color: var(--gray); transition: all 0.3s; font-family: 'Lato', sans-serif; }
     .tab-btn:hover, .tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
     .menu-panel { display: none; }
     .menu-panel.active { display: block; }
+    .menu-category { font-family: 'Playfair Display', serif; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--red); padding: 20px 30px 8px; text-align: left; max-width: 1100px; margin: 0 auto; }
     .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1px; background: #e0e0e0; border: 1px solid #e0e0e0; text-align: left; max-width: 1100px; margin: 0 auto; }
-    .menu-item { background: #fff; padding: 26px 30px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; transition: background 0.3s; }
+    .menu-item { background: #fff; padding: 24px 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; transition: background 0.25s; }
     .menu-item:hover { background: var(--cream); }
-    .mi-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
-    .mi-desc { font-size: 13px; color: var(--gray); line-height: 1.6; }
-    .mi-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--red); white-space: nowrap; }
+    .mi-name { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 5px; }
+    .mi-desc { font-size: 13px; color: var(--gray); line-height: 1.55; }
+    .mi-price { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--red); white-space: nowrap; flex-shrink: 0; }
 
-    /* SPECIALS */
+    /* ── SPECIALS ── */
     .specials { background: #fff; padding: 100px 80px; }
     .specials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 60px; }
-    .sp-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07); transition: all 0.4s; border: 1px solid #f0f0f0; }
+    .sp-card { background: #fff; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07); transition: all 0.4s; border: 1px solid #efefef; }
     .sp-card:hover { transform: translateY(-9px); box-shadow: 0 20px 55px rgba(0,0,0,0.13); }
-    .sp-img-wrap { overflow: hidden; }
-    .sp-img-wrap img { width: 100%; height: 260px; object-fit: cover; display: block; transition: transform 0.6s; }
+    .sp-img-wrap { overflow: hidden; height: 260px; }
+    .sp-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.6s; image-rendering: auto; }
     .sp-card:hover .sp-img-wrap img { transform: scale(1.06); }
-    .sp-body { padding: 28px; }
-    .sp-tag { display: inline-block; background: var(--red); color: #fff; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 4px 12px; border-radius: 2px; margin-bottom: 14px; }
-    .sp-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
-    .sp-desc { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 22px; }
+    .sp-body { padding: 26px 28px; }
+    .sp-tag { display: inline-block; background: var(--red); color: #fff; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; padding: 4px 12px; border-radius: 2px; margin-bottom: 12px; }
+    .sp-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 9px; }
+    .sp-desc { font-size: 14px; color: var(--gray); line-height: 1.75; margin-bottom: 20px; }
     .sp-foot { display: flex; justify-content: space-between; align-items: center; }
     .sp-price { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--red); }
     .btn-sm { background: var(--dark); color: #fff; padding: 10px 20px; border-radius: 3px; text-decoration: none; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; }
     .btn-sm:hover { background: var(--red); }
 
-    /* GALLERY */
+    /* ── CATERING ── */
+    .catering { background: var(--dark); padding: 90px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .catering .section-label { color: var(--gold); }
+    .catering .section-title { color: #fff; }
+    .catering .section-sub { color: rgba(255,255,255,0.6); max-width: 100%; }
+    .catering-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .cat-feat { display: flex; gap: 14px; align-items: flex-start; }
+    .cat-feat i { color: var(--gold); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .cat-feat-title { font-weight: 700; font-size: 14px; color: #fff; margin-bottom: 3px; }
+    .cat-feat-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .catering-img { border-radius: 4px; overflow: hidden; }
+    .catering-img img { width: 100%; height: 480px; object-fit: cover; object-position: center top; display: block; border-radius: 4px; image-rendering: auto; }
+    .catering-cta { display: flex; gap: 16px; margin-top: 36px; flex-wrap: wrap; }
+    .btn-gold { background: var(--gold); color: var(--dark); padding: 16px 36px; border-radius: 3px; text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; transition: all 0.3s; display: inline-block; }
+    .btn-gold:hover { background: #b8922e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.4); }
+
+    /* ── GALLERY ── */
     .gallery { background: var(--cream); padding: 100px 80px; text-align: center; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: 270px 270px; gap: 8px; margin-top: 60px; }
-    .gal-item { overflow: hidden; border-radius: 3px; position: relative; cursor: pointer; }
-    .gal-item:first-child { grid-column: 1/3; grid-row: 1/2; }
-    .gal-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
-    .gal-item:hover img { transform: scale(1.08); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 60px; }
+    .gal-item { overflow: hidden; border-radius: 3px; position: relative; cursor: pointer; height: 250px; }
+    .gal-item:first-child { grid-column: 1/3; height: 350px; }
+    .gal-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.6s; image-rendering: auto; display: block; }
+    .gal-item:first-child img { object-position: center top; }
+    .gal-item:hover img { transform: scale(1.07); }
     .gal-ov { position: absolute; inset: 0; background: rgba(0,0,0,0); display: flex; align-items: center; justify-content: center; transition: background 0.4s; }
     .gal-item:hover .gal-ov { background: rgba(0,0,0,0.28); }
-    .gal-ov i { color: #fff; font-size: 28px; opacity: 0; transition: opacity 0.4s; }
+    .gal-ov i { color: #fff; font-size: 26px; opacity: 0; transition: opacity 0.4s; }
     .gal-item:hover .gal-ov i { opacity: 1; }
 
-    /* RESERVATION */
-    .reservation { background: var(--dark); color: #fff; padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
+    /* ── RESERVATION ── */
+    .reservation { background: #1a1a1a; color: #fff; padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
     .reservation .section-label { color: var(--gold); }
     .reservation .section-title { color: #fff; }
     .reservation .section-sub { color: rgba(255,255,255,0.55); }
-    .res-info { display: flex; flex-direction: column; gap: 34px; margin-top: 40px; }
-    .ri-item { display: flex; gap: 20px; align-items: flex-start; }
-    .ri-icon { width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 17px; flex-shrink: 0; }
-    .ri-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 5px; }
-    .ri-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.75; }
-    .how-it-works { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 6px; padding: 24px 28px; margin-top: 36px; }
-    .how-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 12px; }
+    .res-info { display: flex; flex-direction: column; gap: 30px; margin-top: 36px; }
+    .ri-item { display: flex; gap: 18px; align-items: flex-start; }
+    .ri-icon { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(201,168,76,0.35); background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 16px; flex-shrink: 0; }
+    .ri-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+    .ri-text { font-size: 14px; color: rgba(255,255,255,0.72); line-height: 1.75; }
+    .how-it-works { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.28); border-radius: 6px; padding: 22px 26px; margin-top: 32px; }
+    .how-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 14px; }
     .how-steps { display: flex; flex-direction: column; gap: 10px; }
-    .how-step { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-    .how-step i { color: var(--gold); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
-    .res-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 48px; }
-    .form-group { margin-bottom: 22px; }
-    .form-group label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; font-weight: 700; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); color: #fff; padding: 14px 16px; border-radius: 4px; font-size: 15px; font-family: 'Lato', sans-serif; transition: border-color 0.3s; -webkit-appearance: none; }
+    .how-step { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .how-step i { color: var(--gold); margin-top: 2px; font-size: 11px; flex-shrink: 0; }
+    .res-form { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 44px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; font-weight: 700; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); color: #fff; padding: 13px 16px; border-radius: 4px; font-size: 14px; font-family: 'Lato', sans-serif; transition: border-color 0.3s; -webkit-appearance: none; }
     .form-group select option { background: #222; color: #fff; }
-    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.28); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .btn-submit { width: 100%; background: var(--red); color: #fff; padding: 18px; border: none; border-radius: 4px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; margin-top: 6px; }
-    .btn-submit:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,30,58,0.45); }
-    .hours-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 10px; text-align: center; letter-spacing: 0.5px; }
+    .btn-submit:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,30,58,0.4); }
+    .hours-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 10px; text-align: center; }
 
-    /* FOOTER */
-    footer { background: #0f0f0f; color: #fff; padding: 72px 80px 36px; }
+    /* ── FOOTER ── */
+    footer { background: #0d0d0d; color: #fff; padding: 72px 80px 36px; }
     .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; padding-bottom: 56px; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .f-logo { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #fff; letter-spacing: 3px; margin-bottom: 14px; display: block; }
-    .f-logo span { color: var(--gold); }
+    .f-logo img { height: 52px; width: auto; margin-bottom: 16px; display: block; }
     .f-tagline { font-size: 14px; color: rgba(255,255,255,0.38); line-height: 1.8; margin-bottom: 28px; max-width: 290px; }
     .socials { display: flex; gap: 10px; }
     .soc-link { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.13); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.45); font-size: 14px; transition: all 0.3s; text-decoration: none; }
     .soc-link:hover { border-color: var(--red); background: var(--red); color: #fff; }
-    .f-head { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 22px; }
-    .f-links { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-    .f-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+    .f-head { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 20px; }
+    .f-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .f-links a { color: rgba(255,255,255,0.42); text-decoration: none; font-size: 14px; transition: color 0.3s; }
     .f-links a:hover { color: #fff; }
-    .footer-bot { display: flex; justify-content: space-between; align-items: center; padding-top: 30px; font-size: 13px; color: rgba(255,255,255,0.28); }
+    .footer-bot { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; font-size: 13px; color: rgba(255,255,255,0.25); }
 
-    /* BACK TO TOP */
+    /* ── UTILITIES ── */
     .back-top { position: fixed; bottom: 32px; right: 32px; z-index: 900; width: 48px; height: 48px; border-radius: 50%; background: var(--red); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 4px 20px rgba(0,0,0,0.25); opacity: 0; pointer-events: none; transform: translateY(12px); transition: all 0.35s; }
     .back-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
     .back-top:hover { background: var(--red-dark); transform: translateY(-3px); }
-
-    /* FLOAT ORDER */
-    .float-order { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 800; background: var(--red); color: #fff; text-align: center; padding: 18px; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; text-decoration: none; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
-
-    /* LIGHTBOX */
-    .lightbox { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+    .float-order { display: none; position: fixed; bottom: 0; left: 0; width: 100%; z-index: 800; background: var(--red); color: #fff; text-align: center; padding: 17px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; text-decoration: none; box-shadow: 0 -4px 20px rgba(0,0,0,0.2); }
+    .lightbox { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.93); align-items: center; justify-content: center; }
     .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 3px; image-rendering: auto; }
     .lightbox-close { position: absolute; top: 24px; right: 32px; color: #fff; font-size: 36px; cursor: pointer; background: none; border: none; line-height: 1; opacity: 0.7; transition: opacity 0.2s; }
     .lightbox-close:hover { opacity: 1; }
-
-    /* TOAST */
     .toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: #fff; padding: 16px 28px; border-radius: 6px; font-size: 15px; z-index: 3000; opacity: 0; pointer-events: none; transition: all 0.4s; white-space: nowrap; border-left: 4px solid var(--gold); }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* FOCUS */
     a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 3px; }
-
     @keyframes fadeUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .about, .reservation, .lunch-inner { grid-template-columns: 1fr; padding: 80px 40px; }
-      .lunch { padding: 80px 40px; }
+      .about, .reservation, .lunch-inner, .catering { grid-template-columns: 1fr; padding: 80px 40px; }
+      .lunch, .menu-section, .gallery, .specials, .features { padding: 80px 40px; }
       .features-grid, .specials-grid { grid-template-columns: 1fr; }
       .about-img-wrap img { height: 400px; }
       .about-badge { bottom: -16px; right: 0; }
       .lunch-img-wrap img { height: 360px; }
+      .catering-img img { height: 340px; }
     }
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
-      nav.scrolled { padding: 12px 24px; }
+      nav { padding: 14px 24px; }
+      nav.scrolled { padding: 11px 24px; }
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: flex; }
       .float-order { display: block; }
       .back-top { bottom: 80px; }
-      .menu-section, .gallery, .specials, .features, .lunch { padding: 70px 24px; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .gal-item:first-child { grid-column: 1/3; grid-row: auto; }
+      .menu-section, .gallery, .specials, .features, .lunch, .catering { padding: 60px 24px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gal-item:first-child { grid-column: 1/3; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
       .footer-bot { flex-direction: column; gap: 10px; text-align: center; }
       .about, .reservation { padding: 60px 24px; }
+      .course-items { grid-template-columns: 1fr; }
+      .catering-features { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .hero-btns { flex-direction: column; align-items: center; }
       .gallery-grid { grid-template-columns: 1fr; }
-      .gal-item:first-child { grid-column: auto; }
+      .gal-item:first-child { grid-column: auto; height: 260px; }
       .footer-top { grid-template-columns: 1fr; }
-      .res-form { padding: 28px 20px; }
+      .res-form { padding: 24px 18px; }
       .form-row { grid-template-columns: 1fr; }
     }
   </style>
@@ -261,15 +278,15 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">SPIZZI<span>GO</span></a>
+  <a href="#" class="nav-logo"><img src="logo.PNG" alt="Spizzigo" /></a>
   <ul class="nav-links" role="navigation" aria-label="Main navigation">
     <li><a href="#about">Our Story</a></li>
     <li><a href="#lunch">Lunch Special</a></li>
     <li><a href="#menu">Menu</a></li>
-    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#catering">Catering</a></li>
     <li><a href="#reservation">Reservations</a></li>
   </ul>
-  <a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="nav-cta" aria-label="Order food online">Order Now</a>
+  <a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="nav-cta">Order Now</a>
   <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -277,20 +294,20 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+  <img src="logo.PNG" alt="Spizzigo" />
   <a href="#about" class="mob-link">Our Story</a>
   <a href="#lunch" class="mob-link">Lunch Special</a>
   <a href="#menu" class="mob-link">Menu</a>
-  <a href="#gallery" class="mob-link">Gallery</a>
+  <a href="#catering" class="mob-link">Catering</a>
   <a href="#reservation" class="mob-link">Reservations</a>
   <a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="mob-order">Order Now</a>
 </div>
 
-<a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="float-order" aria-label="Order online">Order Now — spizzigo.com</a>
+<a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="float-order">Order Now</a>
 <button class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-chevron-up"></i></button>
-
 <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-  <img id="lightboxImg" src="" alt="Gallery image" />
+  <img id="lightboxImg" src="" alt="" />
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -311,14 +328,14 @@
 </section>
 
 <!-- PROMO BAR -->
-<a href="#lunch" class="promo-bar" style="display:block; text-decoration:none;">
-  Lunch Special — <span>$15.95 / person</span> &nbsp;·&nbsp; Monday – Friday &nbsp;·&nbsp; 12 PM – 3 PM &nbsp;·&nbsp; Tap to see menu ↓
+<a href="#lunch" class="promo-bar">
+  Lunch Special — <span>$15.95 / person</span> &nbsp;·&nbsp; Monday – Friday &nbsp;·&nbsp; 12 PM – 3 PM &nbsp;·&nbsp; See Full Menu ↓
 </a>
 
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="about-img-wrap fade-in">
-    <img src="terrace.PNG" alt="Spizzigo dining room" loading="lazy" />
+    <img src="capresa.PNG" alt="Spizzigo caprese" loading="lazy" />
     <div class="about-badge"><span class="yr">20+</span><span class="lbl">Years</span></div>
   </div>
   <div>
@@ -364,46 +381,62 @@
     <div>
       <span class="section-label fade-in">Daily Offer</span>
       <h2 class="section-title fade-in d1">The <em>Lunch Special</em></h2>
-      <div class="lunch-badge-row fade-in d2">
-        <div class="lunch-price-badge">$15.95</div>
-        <div class="lunch-days">Per Person &nbsp;·&nbsp; Mon – Fri &nbsp;·&nbsp; 12 PM – 3 PM<br><span style="color:var(--red);font-size:11px;">Dine-In Only</span></div>
-      </div>
-      <p class="lunch-desc fade-in d2">A two-course Italian lunch — built for the workday, priced for the everyday. Start with a classic, choose your main, and enjoy a full Spizzigo experience at an unbeatable value.</p>
-      <div class="lunch-steps">
-        <div class="lunch-step fade-in d2">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">Choose Your Starter</div>
-            <div class="step-items">Cup of Soup of the Day &nbsp;·&nbsp; House Salad</div>
-          </div>
-        </div>
-        <div class="lunch-step fade-in d3">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">Choose Your Entrée</div>
-            <div class="step-items">
-              Calamari Fritti &nbsp;·&nbsp; Carpaccio Classico &nbsp;·&nbsp; Pasta of the Day<br>
-              Gnocchi al Ragù &nbsp;·&nbsp; Pizza Margherita &nbsp;·&nbsp; Grilled Chicken &nbsp;·&nbsp; Fish Fillet
-            </div>
-          </div>
-        </div>
-        <div class="lunch-step fade-in d4">
-          <div class="step-num" style="background:var(--red);">★</div>
-          <div class="step-body">
-            <div class="step-title">Complimentary Bread Basket</div>
-            <div class="step-items">Warm focaccia and Italian bread served with every lunch order</div>
-          </div>
+      <div class="lunch-header fade-in d2">
+        <div class="lunch-price-tag">$15.95</div>
+        <div class="lunch-meta">
+          <strong>Monday – Friday &nbsp;·&nbsp; 12 PM – 3 PM</strong><br>
+          Dine-In Only &nbsp;·&nbsp; <span class="note">Not valid on holidays</span>
         </div>
       </div>
-      <div style="margin-top:40px;" class="fade-in d4">
+      <p class="lunch-desc fade-in d2">A complete two-course Italian lunch. Every order comes with your choice of <strong>soup or salad</strong>, then pick from any of the entrées below.</p>
+
+      <div class="lunch-course fade-in d3">
+        <div class="course-head">
+          <div class="course-num">1</div>
+          <div class="course-title">Starter — Your Choice</div>
+        </div>
+        <div class="course-items" style="grid-template-columns:1fr 1fr; padding-left:46px;">
+          <div class="course-item">Soup of the Day</div>
+          <div class="course-item">House Salad</div>
+        </div>
+      </div>
+
+      <div class="lunch-course fade-in d3">
+        <div class="course-head">
+          <div class="course-num">2</div>
+          <div class="course-title">Entrée — Your Choice</div>
+        </div>
+        <div class="course-items">
+          <div class="course-item">Calamari Fritti</div>
+          <div class="course-item">Carpaccio di Manzo</div>
+          <div class="course-item">Insalata Cesare</div>
+          <div class="course-item">Panino Prosciutto e Burrata</div>
+          <div class="course-item">Spaghetti al Pesto</div>
+          <div class="course-item">Penne alla Vodka</div>
+          <div class="course-item">Spaghetti all'Arrabbiata</div>
+          <div class="course-item">Gnocchi Formaggi</div>
+          <div class="course-item">Penne alla Carbonara</div>
+          <div class="course-item">Pizza Cotto e Funghi</div>
+          <div class="course-item">Pizza Pepperoni</div>
+          <div class="course-item">Pollo alla Griglia</div>
+          <div class="course-item">Filetto di Pesce</div>
+        </div>
+      </div>
+
+      <div class="lunch-note fade-in d4">
+        <i class="fa-solid fa-circle-info" style="color:var(--gold); margin-right:8px;"></i>
+        All lunch entrées are served with a complimentary bread basket. Not valid on holidays or with other promotions.
+      </div>
+      <div style="margin-top:32px;" class="fade-in d4">
         <a href="#reservation" class="btn-primary">Reserve for Lunch</a>
       </div>
     </div>
+
     <div class="lunch-img-wrap fade-in d2">
-      <img src="terrace.PNG" alt="Spizzigo patio dining" loading="lazy" />
+      <img src="seafood-pasta.PNG" alt="Spizzigo seafood pasta" loading="lazy" />
       <div class="lunch-img-overlay">
-        <div class="lunch-img-note">Our Patio</div>
-        <div class="lunch-img-sub">Dine al fresco — Florida sunshine, Italian soul</div>
+        <div class="lunch-img-note">From the Kitchen</div>
+        <div class="lunch-img-sub">Fresh, bold, authentically Italian</div>
       </div>
     </div>
   </div>
@@ -416,69 +449,63 @@
   <p class="section-sub">Classic dishes, timeless flavors — something for every table.</p>
 
   <div class="menu-tabs">
-    <button class="tab-btn active" onclick="showTab('antipasti',this)">Antipasti</button>
+    <button class="tab-btn active" onclick="showTab('antipasti',this)">Antipasti & Salads</button>
     <button class="tab-btn" onclick="showTab('pizza',this)">Pizze</button>
     <button class="tab-btn" onclick="showTab('pasta',this)">Pasta & Risotto</button>
     <button class="tab-btn" onclick="showTab('dolci',this)">Dolci</button>
-    <button class="tab-btn" onclick="showTab('bar',this)">Bar</button>
   </div>
 
+  <!-- ANTIPASTI -->
   <div id="antipasti" class="menu-panel active">
     <div class="menu-grid">
-      <div class="menu-item"><div><div class="mi-name">Bruschette al Pomodoro</div><div class="mi-desc">Grilled bread, heirloom tomatoes, basil, EVOO</div></div><div class="mi-price">$8</div></div>
-      <div class="menu-item"><div><div class="mi-name">Burrata Panino</div><div class="mi-desc">Creamy burrata, prosciutto crudo, arugula, truffle oil</div></div><div class="mi-price">$16</div></div>
-      <div class="menu-item"><div><div class="mi-name">Calamari Fritti</div><div class="mi-desc">Crispy fried calamari, spicy marinara, lemon aioli</div></div><div class="mi-price">$14</div></div>
-      <div class="menu-item"><div><div class="mi-name">Carpaccio Classico</div><div class="mi-desc">Beef tenderloin, capers, arugula, Parmigiano shavings</div></div><div class="mi-price">$17</div></div>
-      <div class="menu-item"><div><div class="mi-name">Polpetta Gigante</div><div class="mi-desc">1 lb Italian meatball stuffed with ricotta, San Marzano sauce</div></div><div class="mi-price">$19</div></div>
-      <div class="menu-item"><div><div class="mi-name">Truffle Fries</div><div class="mi-desc">Crispy fries, truffle oil, Parmigiano Reggiano, herbs</div></div><div class="mi-price">$8</div></div>
+      <div class="menu-item"><div><div class="mi-name">Bocconcini Salad</div><div class="mi-desc">Fresh mozzarella bocconcini, cherry tomatoes, basil, EVOO</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Bruschette</div><div class="mi-desc">Grilled bread, heirloom tomatoes, fresh basil, extra virgin olive oil</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Burrata</div><div class="mi-desc">Creamy burrata, prosciutto, arugula, cherry tomatoes, balsamic</div></div><div class="mi-price">$18</div></div>
+      <div class="menu-item"><div><div class="mi-name">Calamari Fritti</div><div class="mi-desc">Crispy fried calamari, marinara sauce, lemon</div></div><div class="mi-price">$18</div></div>
+      <div class="menu-item"><div><div class="mi-name">Carpaccio di Manzo</div><div class="mi-desc">Thinly sliced beef, arugula, mushroom, shaved Parmigiano</div></div><div class="mi-price">$17</div></div>
+      <div class="menu-item"><div><div class="mi-name">Cesare Salad</div><div class="mi-desc">Romaine hearts, house Caesar dressing, croutons, Parmigiano</div></div><div class="mi-price">$15</div></div>
+      <div class="menu-item"><div><div class="mi-name">Focaccia Rib</div><div class="mi-desc">House focaccia with slow-braised rib, au jus</div></div><div class="mi-price">$28</div></div>
     </div>
   </div>
 
+  <!-- PIZZA -->
   <div id="pizza" class="menu-panel">
     <div class="menu-grid">
-      <div class="menu-item"><div><div class="mi-name">Margherita</div><div class="mi-desc">San Marzano tomato, fior di latte, fresh basil</div></div><div class="mi-price">$14</div></div>
-      <div class="menu-item"><div><div class="mi-name">Pepperoni</div><div class="mi-desc">Tomato, mozzarella, imported Italian pepperoni</div></div><div class="mi-price">$16</div></div>
-      <div class="menu-item"><div><div class="mi-name">Burrata Pizza</div><div class="mi-desc">Tomato base, fresh burrata, cherry tomatoes, basil oil</div></div><div class="mi-price">$20</div></div>
-      <div class="menu-item"><div><div class="mi-name">Gamberetti</div><div class="mi-desc">Garlic cream, fresh shrimp, mozzarella, lemon zest, arugula</div></div><div class="mi-price">$22</div></div>
-      <div class="menu-item"><div><div class="mi-name">Cotto e Funghi</div><div class="mi-desc">Tomato, mozzarella, smoked ham, mushrooms, oregano</div></div><div class="mi-price">$18</div></div>
-      <div class="menu-item"><div><div class="mi-name">Pizza Carbonara</div><div class="mi-desc">Cream base, pancetta, egg yolk, Pecorino, black pepper</div></div><div class="mi-price">$20</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pizza Margherita</div><div class="mi-desc">San Marzano tomato, fior di latte mozzarella, fresh basil</div></div><div class="mi-price">$14</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pizza Pepperoni</div><div class="mi-desc">Tomato sauce, mozzarella, imported Italian pepperoni</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pizza Hawaiiana</div><div class="mi-desc">Tomato sauce, mozzarella, ham, pineapple</div></div><div class="mi-price">$17</div></div>
     </div>
   </div>
 
+  <!-- PASTA & RISOTTO -->
   <div id="pasta" class="menu-panel">
     <div class="menu-grid">
-      <div class="menu-item"><div><div class="mi-name">Penne alla Carbonara</div><div class="mi-desc">Pancetta, free-range egg, Pecorino Romano, black pepper</div></div><div class="mi-price">$18</div></div>
-      <div class="menu-item"><div><div class="mi-name">Spaghetti al Pesto</div><div class="mi-desc">Housemade basil pesto, pine nuts, Parmigiano, cherry tomatoes</div></div><div class="mi-price">$17</div></div>
-      <div class="menu-item"><div><div class="mi-name">Ravioli Short Rib</div><div class="mi-desc">Braised short rib stuffed ravioli, truffle butter, sage</div></div><div class="mi-price">$26</div></div>
-      <div class="menu-item"><div><div class="mi-name">Linguine Frutti di Mare</div><div class="mi-desc">Clams, mussels, shrimp, scallops, white wine, cherry tomatoes</div></div><div class="mi-price">$28</div></div>
-      <div class="menu-item"><div><div class="mi-name">Gnocchi al Ragù</div><div class="mi-desc">Housemade potato gnocchi, slow-braised Bolognese ragù</div></div><div class="mi-price">$22</div></div>
-      <div class="menu-item"><div><div class="mi-name">Salmone e Risotto</div><div class="mi-desc">Pan-seared salmon, Parmigiano risotto, lemon butter</div></div><div class="mi-price">$28</div></div>
+      <div class="menu-item"><div><div class="mi-name">Rigatoni alla Carbonara</div><div class="mi-desc">Pancetta, egg yolk, Pecorino Romano, black pepper</div></div><div class="mi-price">$22</div></div>
+      <div class="menu-item"><div><div class="mi-name">Spaghetti al Pomodoro</div><div class="mi-desc">San Marzano tomato sauce, fresh basil, Parmigiano</div></div><div class="mi-price">$15</div></div>
+      <div class="menu-item"><div><div class="mi-name">Risotto Asparagi e Gamberetti</div><div class="mi-desc">Creamy risotto, asparagus, fresh shrimp, white wine</div></div><div class="mi-price">$28</div></div>
+      <div class="menu-item"><div><div class="mi-name">Risotto di Manzo</div><div class="mi-desc">Slow-braised beef risotto, red wine reduction, Parmigiano</div></div><div class="mi-price">$26</div></div>
+      <div class="menu-item"><div><div class="mi-name">Salmone e Risotto</div><div class="mi-desc">Pan-seared salmon, Parmigiano risotto, lemon butter sauce</div></div><div class="mi-price">$28</div></div>
     </div>
   </div>
 
+  <!-- DOLCI -->
   <div id="dolci" class="menu-panel">
     <div class="menu-grid">
-      <div class="menu-item"><div><div class="mi-name">Tiramisu della Casa</div><div class="mi-desc">Ladyfingers, mascarpone, espresso, fine cocoa</div></div><div class="mi-price">$9</div></div>
-      <div class="menu-item"><div><div class="mi-name">Crème Brûlée</div><div class="mi-desc">Vanilla custard, caramelized sugar crust, seasonal berries</div></div><div class="mi-price">$8</div></div>
-      <div class="menu-item"><div><div class="mi-name">Chocolate Lava Cake</div><div class="mi-desc">Warm dark chocolate, molten center, vanilla gelato</div></div><div class="mi-price">$10</div></div>
-      <div class="menu-item"><div><div class="mi-name">Gelato</div><div class="mi-desc">Two scoops of seasonal Italian gelato, your choice</div></div><div class="mi-price">$6</div></div>
-      <div class="menu-item"><div><div class="mi-name">Calzone di Nutella</div><div class="mi-desc">Wood-fired pastry, Nutella, seasonal fruit, powdered sugar</div></div><div class="mi-price">$14</div></div>
-      <div class="menu-item"><div><div class="mi-name">Panna Cotta</div><div class="mi-desc">Vanilla bean panna cotta, wild berry coulis, mint</div></div><div class="mi-price">$8</div></div>
+      <div class="menu-item"><div><div class="mi-name">Tiramisu</div><div class="mi-desc">Espresso-soaked ladyfingers, mascarpone cream, fine cocoa</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Crème Brûlée</div><div class="mi-desc">Vanilla bean custard, caramelized sugar crust, seasonal berries</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Chocolate Lava Cake</div><div class="mi-desc">Warm dark chocolate cake, molten center, vanilla gelato</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Panna Cotta</div><div class="mi-desc">Vanilla bean panna cotta, wild berry coulis, fresh mint</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Calzone di Nutella</div><div class="mi-desc">Wood-fired pastry, Nutella, seasonal fruit, powdered sugar</div></div><div class="mi-price">$15</div></div>
+      <div class="menu-item"><div><div class="mi-name">Pizza di Nutella</div><div class="mi-desc">Wood-fired Nutella pizza, seasonal fruits, powdered sugar</div></div><div class="mi-price">$16</div></div>
+      <div class="menu-item"><div><div class="mi-name">Limoncello Mascarpone Cake</div><div class="mi-desc">Light sponge, limoncello-infused mascarpone cream</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Chocolate Cake Mississippi</div><div class="mi-desc">Rich Southern-style chocolate cake, chocolate ganache</div></div><div class="mi-price">$12</div></div>
+      <div class="menu-item"><div><div class="mi-name">Homemade Gelato</div><div class="mi-desc">Seasonal flavors, churned fresh daily</div></div><div class="mi-price">$6+</div></div>
+      <div class="menu-item"><div><div class="mi-name">Gelato ½ Litre</div><div class="mi-desc">Half litre of your choice of housemade gelato — perfect to share</div></div><div class="mi-price">$19</div></div>
+      <div class="menu-item"><div><div class="mi-name">Gelato 1 Litre</div><div class="mi-desc">Full litre of housemade gelato — ideal for the whole table</div></div><div class="mi-price">$32</div></div>
     </div>
   </div>
 
-  <div id="bar" class="menu-panel">
-    <div class="menu-grid">
-      <div class="menu-item"><div><div class="mi-name">Negroni</div><div class="mi-desc">Gin, Campari, sweet vermouth, orange peel</div></div><div class="mi-price">$14</div></div>
-      <div class="menu-item"><div><div class="mi-name">Lychee Martini</div><div class="mi-desc">Vodka, lychee liqueur, pineapple juice, lime</div></div><div class="mi-price">$14</div></div>
-      <div class="menu-item"><div><div class="mi-name">Mojito Royale</div><div class="mi-desc">White rum, fresh mint, lime, prosecco, cane sugar</div></div><div class="mi-price">$13</div></div>
-      <div class="menu-item"><div><div class="mi-name">Passion Fruit Mojito</div><div class="mi-desc">Rum, passion fruit, mint, lime, soda water</div></div><div class="mi-price">$13</div></div>
-      <div class="menu-item"><div><div class="mi-name">Chianti — Glass</div><div class="mi-desc">Classic Tuscan red, medium-bodied, cherry &amp; earth notes</div></div><div class="mi-price">$12</div></div>
-      <div class="menu-item"><div><div class="mi-name">Prosecco — Glass</div><div class="mi-desc">Light, crisp, fine bubbles — perfect for every occasion</div></div><div class="mi-price">$10</div></div>
-    </div>
-  </div>
-
-  <div style="margin-top:56px;">
+  <div style="margin-top:52px;">
     <a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="btn-primary">Order Online</a>
   </div>
 </section>
@@ -498,11 +525,11 @@
       </div>
     </div>
     <div class="sp-card fade-in d1">
-      <div class="sp-img-wrap"><img src="seafood-pasta.PNG" alt="Spizzigo linguine" loading="lazy" /></div>
+      <div class="sp-img-wrap"><img src="bolongesa.PNG" alt="Spizzigo pasta" loading="lazy" /></div>
       <div class="sp-body">
         <span class="sp-tag">Chef's Favorite</span>
-        <div class="sp-name">Linguine Frutti di Mare</div>
-        <p class="sp-desc">Clams, mussels, shrimp, and scallops tossed in white wine tomato sauce over silky linguine.</p>
+        <div class="sp-name">Risotto Asparagi e Gamberetti</div>
+        <p class="sp-desc">Creamy risotto, fresh asparagus, and plump shrimp in a delicate white wine sauce. Elegant and satisfying.</p>
         <div class="sp-foot"><span class="sp-price">$28</span><a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="btn-sm">Order Now</a></div>
       </div>
     </div>
@@ -510,11 +537,45 @@
       <div class="sp-img-wrap"><img src="gelato.PNG" alt="Spizzigo gelato" loading="lazy" /></div>
       <div class="sp-body">
         <span class="sp-tag">Sweet Finish</span>
-        <div class="sp-name">Gelato della Casa</div>
-        <p class="sp-desc">Seasonal Italian gelato, churned fresh daily — the perfect close to any Spizzigo meal.</p>
-        <div class="sp-foot"><span class="sp-price">$6</span><a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="btn-sm">Order Now</a></div>
+        <div class="sp-name">Homemade Gelato</div>
+        <p class="sp-desc">Seasonal Italian gelato, churned fresh daily in-house. A Spizzigo tradition since 2005.</p>
+        <div class="sp-foot"><span class="sp-price">$6+</span><a href="https://order.toasttab.com/online/spizzigo" target="_blank" class="btn-sm">Order Now</a></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CATERING -->
+<section class="catering" id="catering">
+  <div>
+    <span class="section-label">Events & Private Dining</span>
+    <h2 class="section-title">We <em>Cater</em> Too</h2>
+    <p class="section-sub">From corporate lunches to birthday celebrations and private events — bring the full Spizzigo experience to your occasion. Our team handles everything from menu planning to setup.</p>
+    <div class="catering-features">
+      <div class="cat-feat fade-in">
+        <i class="fa-solid fa-utensils"></i>
+        <div><div class="cat-feat-title">Custom Menus</div><div class="cat-feat-desc">Tailored to your event size and preferences</div></div>
+      </div>
+      <div class="cat-feat fade-in d1">
+        <i class="fa-solid fa-pizza-slice"></i>
+        <div><div class="cat-feat-title">Wood-Fired On Site</div><div class="cat-feat-desc">Fresh pizza and dishes prepared for your guests</div></div>
+      </div>
+      <div class="cat-feat fade-in d2">
+        <i class="fa-solid fa-champagne-glasses"></i>
+        <div><div class="cat-feat-title">Full Bar Service</div><div class="cat-feat-desc">Wine, cocktails, and prosecco for your event</div></div>
+      </div>
+      <div class="cat-feat fade-in d3">
+        <i class="fa-solid fa-cake-candles"></i>
+        <div><div class="cat-feat-title">Private Celebrations</div><div class="cat-feat-desc">Birthdays, anniversaries, corporate events & more</div></div>
+      </div>
+    </div>
+    <div class="catering-cta fade-in d3">
+      <a href="#reservation" class="btn-gold">Request Catering Info</a>
+      <a href="tel:3054709262" class="btn-outline" style="color:#fff; border-color:rgba(255,255,255,0.4);">Call (305) 470-9262</a>
+    </div>
+  </div>
+  <div class="catering-img fade-in d1">
+    <img src="terrace.PNG" alt="Spizzigo terrace for events" loading="lazy" />
   </div>
 </section>
 
@@ -523,36 +584,32 @@
   <span class="section-label">Our World</span>
   <h2 class="section-title">A Taste of <em>Spizzigo</em></h2>
   <div class="gallery-grid">
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Patio seating">
-      <img src="terrace.PNG" alt="Spizzigo patio seating" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Spizzigo terrace">
+      <img src="terrace.PNG" alt="Spizzigo terrace" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Wood-fired pizza">
-      <img src="ruculosa.PNG" alt="Spizzigo wood-fired pizza" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Rucolosa pizza">
+      <img src="ruculosa.PNG" alt="Spizzigo Rucolosa pizza" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Burrata">
-      <img src="https://img1.wsimg.com/isteam/ip/3b8fcc1e-a374-46e2-bfe2-b420f818662b/Spizzigo_Burrata_2880x2304%20(1).jpg/:/cr=t:18.75%25,l:0%25,w:100%25,h:62.5%25/rs=w:800,h:600,cg:true" alt="Spizzigo burrata" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Caprese">
+      <img src="capresa.PNG" alt="Spizzigo caprese" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Dining room">
-      <img src="capresa.PNG" alt="Spizzigo dining room" loading="lazy" />
-      <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
-    </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Ravioli">
-      <img src="bolongesa.PNG" alt="Spizzigo ravioli" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Bolognese">
+      <img src="bolongesa.PNG" alt="Spizzigo bolognese" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
     <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Gelato">
       <img src="gelato.PNG" alt="Spizzigo gelato" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Linguine">
-      <img src="seafood-pasta.PNG" alt="Spizzigo linguine" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Seafood pasta">
+      <img src="seafood-pasta.PNG" alt="Spizzigo seafood pasta" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
-    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Carbonara">
-      <img src="cesar-salad.PNG" alt="Spizzigo carbonara" loading="lazy" />
+    <div class="gal-item" onclick="openLightbox(this)" role="button" tabindex="0" aria-label="View: Caesar salad">
+      <img src="cesar-salad.PNG" alt="Spizzigo caesar salad" loading="lazy" />
       <div class="gal-ov"><i class="fa-solid fa-expand"></i></div>
     </div>
   </div>
@@ -563,7 +620,7 @@
   <div>
     <span class="section-label">Join Us</span>
     <h2 class="section-title">Make a <em>Reservation</em></h2>
-    <p class="section-sub">Book your table and let us take care of the rest. Walk-ins welcome — reservations recommended on weekends.</p>
+    <p class="section-sub">Book your table and let us take care of the rest. Walk-ins always welcome — reservations recommended on weekends.</p>
     <div class="res-info">
       <div class="ri-item">
         <div class="ri-icon"><i class="fa-solid fa-location-dot"></i></div>
@@ -577,7 +634,7 @@
             Mon – Thu: 11:30 AM – 10:00 PM<br>
             Fri – Sat: 11:30 AM – 11:00 PM<br>
             Sun: 11:30 AM – 10:00 PM<br>
-            <span style="color:rgba(255,255,255,0.45); font-size:13px;">Lunch Special: Mon–Fri · 12–3 PM</span>
+            <span style="color:rgba(255,255,255,0.4); font-size:13px;">Lunch Special: Mon–Fri · 12–3 PM</span>
           </div>
         </div>
       </div>
@@ -586,21 +643,18 @@
         <div><div class="ri-label">Phone</div><div class="ri-text"><a href="tel:3054709262" style="color:inherit;">(305) 470-9262</a></div></div>
       </div>
     </div>
-
-    <!-- HOW IT WORKS -->
     <div class="how-it-works">
       <div class="how-title"><i class="fa-solid fa-circle-info" style="margin-right:8px;"></i>How Reservations Work</div>
       <div class="how-steps">
-        <div class="how-step"><i class="fa-solid fa-circle-check"></i>Fill out the form — your request lands directly in our inbox.</div>
-        <div class="how-step"><i class="fa-solid fa-circle-check"></i>We confirm within a few hours by phone or email.</div>
-        <div class="how-step"><i class="fa-solid fa-circle-check"></i>For same-day or large-group bookings, call us directly at (305) 470-9262.</div>
-        <div class="how-step"><i class="fa-solid fa-circle-check"></i>No online account needed — just show up and enjoy.</div>
+        <div class="how-step"><i class="fa-solid fa-circle-check"></i>Fill out the form — your request lands directly in the restaurant's inbox.</div>
+        <div class="how-step"><i class="fa-solid fa-circle-check"></i>The team confirms within a few hours by phone or email.</div>
+        <div class="how-step"><i class="fa-solid fa-circle-check"></i>For same-day or groups of 6+, call directly at (305) 470-9262.</div>
+        <div class="how-step"><i class="fa-solid fa-circle-check"></i>No account needed — just show up and enjoy.</div>
       </div>
     </div>
   </div>
-
   <div class="res-form fade-in">
-    <!-- ⚙️ SETUP: Sign up free at formspree.io, create a form, and replace YOURFORMID below -->
+    <!-- ⚙️ Go to formspree.io → create free account → paste your form ID below to receive reservation emails -->
     <form id="resForm" action="https://formspree.io/f/YOURFORMID" method="POST">
       <div class="form-row">
         <div class="form-group"><label>First Name *</label><input type="text" name="firstName" placeholder="Marco" required /></div>
@@ -612,9 +666,7 @@
         <div class="form-group"><label>Date *</label><input type="date" name="date" id="resDate" required /></div>
         <div class="form-group">
           <label>Time *</label>
-          <select name="time" id="resTime" required>
-            <option value="">Select time</option>
-          </select>
+          <select name="time" id="resTime" required><option value="">Select time</option></select>
         </div>
       </div>
       <div class="form-group">
@@ -622,12 +674,12 @@
         <select name="guests" required>
           <option value="">Select guests</option>
           <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option>
-          <option>4 Guests</option><option>5 Guests</option><option>6+ Guests (call us)</option>
+          <option>4 Guests</option><option>5 Guests</option><option>6+ Guests — we'll call to confirm</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Special Requests</label>
-        <textarea name="requests" placeholder="Allergies, celebrations, seating preferences..." style="resize:vertical; min-height:80px;"></textarea>
+        <label>Occasion / Special Requests</label>
+        <textarea name="requests" placeholder="Birthday, anniversary, dietary needs, seating preferences, catering inquiry..." style="resize:vertical; min-height:80px;"></textarea>
       </div>
       <button type="submit" class="btn-submit">Request Reservation</button>
       <p class="hours-note">Last seating: Sun–Thu 9:00 PM &nbsp;·&nbsp; Fri–Sat 10:00 PM</p>
@@ -639,8 +691,8 @@
 <footer>
   <div class="footer-top">
     <div>
-      <span class="f-logo">SPIZZI<span>GO</span></span>
-      <p class="f-tagline">Italian classics for every occasion — wood-fired, handcrafted, and made with amore since 2005.</p>
+      <div class="f-logo"><img src="logo.PNG" alt="Spizzigo" /></div>
+      <p class="f-tagline">Italian classics for every occasion — wood-fired, handcrafted, and made with amore since 2005. We also cater!</p>
       <div class="socials">
         <a href="https://www.instagram.com/spizzigo/" target="_blank" class="soc-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://www.facebook.com/spizzigo/" target="_blank" class="soc-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -654,7 +706,7 @@
         <li><a href="#about">Our Story</a></li>
         <li><a href="#lunch">Lunch Special</a></li>
         <li><a href="#menu">Menu</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#catering">Catering</a></li>
         <li><a href="#reservation">Reservations</a></li>
       </ul>
     </div>
@@ -664,16 +716,17 @@
         <li><a href="#">Mon–Thu: 11:30 AM – 10 PM</a></li>
         <li><a href="#">Fri–Sat: 11:30 AM – 11 PM</a></li>
         <li><a href="#">Sun: 11:30 AM – 10 PM</a></li>
-        <li><a href="#lunch" style="color:var(--gold);">Lunch Special: Mon–Fri 12–3 PM</a></li>
+        <li><a href="#lunch" style="color:var(--gold);">Lunch: Mon–Fri · 12–3 PM</a></li>
       </ul>
     </div>
     <div>
       <div class="f-head">Contact</div>
       <ul class="f-links">
         <li><a href="tel:3054709262">(305) 470-9262</a></li>
-        <li><a href="#">11402 NW 41st Street, #108</a></li>
+        <li><a href="#">11402 NW 41st St, #108</a></li>
         <li><a href="#">Doral, Florida 33178</a></li>
         <li><a href="https://order.toasttab.com/online/spizzigo" target="_blank">Order Online</a></li>
+        <li><a href="#catering" style="color:var(--gold);">Catering Inquiries</a></li>
       </ul>
     </div>
   </div>
@@ -684,21 +737,20 @@
 </footer>
 
 <script>
-  // ── Navbar scroll + active nav ──
   const nav = document.getElementById('navbar');
   const backTop = document.getElementById('backTop');
-  const sections = ['about','lunch','menu','specials','gallery','reservation'];
+  const navSections = ['about','lunch','menu','specials','catering','gallery','reservation'];
+
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     nav.classList.toggle('scrolled', y > 60);
     backTop.classList.toggle('visible', y > 400);
     let current = '';
-    sections.forEach(id => { const el = document.getElementById(id); if (el && y >= el.offsetTop - 130) current = id; });
+    navSections.forEach(id => { const el = document.getElementById(id); if (el && y >= el.offsetTop - 130) current = id; });
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
   });
   backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-  // ── Hamburger ──
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
   hamburger.addEventListener('click', () => {
@@ -712,13 +764,15 @@
     hamburger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
   }));
 
-  // ── Fade-in ──
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 }).observe !== undefined && (() => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  })();
 
-  // ── Menu tabs ──
   function showTab(id, btn) {
     document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -726,12 +780,11 @@
     btn.classList.add('active');
   }
 
-  // ── Lightbox ──
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   function openLightbox(item) {
     const img = item.querySelector('img');
-    lightboxImg.src = img.src.replace(/w=\d+/, 'w=1600').replace(/h=\d+/, 'h=1200');
+    lightboxImg.src = img.src;
     lightboxImg.alt = img.alt;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -744,37 +797,33 @@
     item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(item); } });
   });
 
-  // ── Dynamic reservation times by day ──
   const resDate = document.getElementById('resDate');
   const resTime = document.getElementById('resTime');
   const baseSlots = ['11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM','8:00 PM','8:30 PM','9:00 PM'];
   const friSatExtra = ['9:30 PM','10:00 PM'];
-  const today = new Date(); today.setHours(0,0,0,0);
-  resDate.min = today.toISOString().split('T')[0];
+  const todayD = new Date(); todayD.setHours(0,0,0,0);
+  resDate.min = todayD.toISOString().split('T')[0];
   function populateTimes() {
     const val = resDate.value;
-    const slots = val && (new Date(val + 'T00:00:00').getDay() === 5 || new Date(val + 'T00:00:00').getDay() === 6)
-      ? [...baseSlots, ...friSatExtra] : baseSlots;
+    const day = val ? new Date(val + 'T12:00:00').getDay() : -1;
+    const slots = (day === 5 || day === 6) ? [...baseSlots, ...friSatExtra] : baseSlots;
     resTime.innerHTML = '<option value="">Select time</option>' + slots.map(s => `<option>${s}</option>`).join('');
   }
   populateTimes();
   resDate.addEventListener('change', populateTimes);
 
-  // ── Reservation form submission ──
   function showToast(msg) {
     const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 4500);
   }
   document.getElementById('resForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const data = new FormData(this);
-    // If Formspree ID is still placeholder, just show success demo
     if (this.action.includes('YOURFORMID')) {
-      showToast('✓ Reservation request sent! We\'ll confirm by phone or email.');
+      showToast('✓ Request received! We\'ll confirm by phone or email shortly.');
       this.reset(); populateTimes(); return;
     }
     try {
-      const res = await fetch(this.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      const res = await fetch(this.action, { method: 'POST', body: new FormData(this), headers: { Accept: 'application/json' } });
       if (res.ok) { showToast('✓ Reservation request sent! We\'ll confirm shortly.'); this.reset(); populateTimes(); }
       else { showToast('Something went wrong. Please call us at (305) 470-9262.'); }
     } catch { showToast('Something went wrong. Please call us at (305) 470-9262.'); }
